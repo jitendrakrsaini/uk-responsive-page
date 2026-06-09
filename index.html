@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>uk</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+
+/* FIRST SECTION */
+.container {
+    min-height:100vh;
+    background: linear-gradient(180deg, #120114, #650672);
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+
+    position: relative;
+    overflow: hidden;
+    color: white;
+    
+}
+
+/* bubbles layer */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* bubble style */
+.bubbles span {
+  position: absolute;
+  bottom: -50px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+/* content should be above bubbles */
+.top,
+.bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.box img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.top{
+    min-height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:60px;
+    color:white;
+    font-weight:bold;
+    text-align:center;
+}
+
+.bottom{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+}
+
+.row{
+    display:flex;
+    gap:50px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.box{
+    width:200px;
+    height:200px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    transition: 0.3s ease;
+}
+
+.box img:hover{
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* SECTIONS */
+.section{
+    width:100%;
+    min-height:600px;
+    display:flex;
+    padding:40px;
+}
+
+/* LEFT SIDE */
+.left{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* CONTENT ANIMATION */
+.content{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    opacity:0;
+    transform:translateX(-120px);
+    transition:1s ease;
+}
+
+.content.show{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.city{
+    font-size:55px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.details{
+    font-size:18px;
+    line-height:1.8;
+    text-align:center;
+    opacity:0.9;
+}
+
+/* RIGHT SIDE */
+.right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.right img{
+    width:70%;
+    border-radius:20px;
+    opacity:0;
+    transform:translateX(120px);
+    transition:1s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+.right img.show{
+    opacity:1;
+    transform:translateX(0);
+}
+
+/* COLORS */
+.c1 { background: linear-gradient(180deg, #650672, #210c9b); }
+.c2 { background: linear-gradient(180deg, #210c9b, #088018); }
+.c3 { background: linear-gradient(180deg, #088018, #b8d60f); }
+.c4 { background: linear-gradient(180deg, #b8d60f, #eb8d21); }
+
+/* ========================= */
+/* TABLET RESPONSIVE */
+/* ========================= */
+
+@media(max-width:992px){
+
+    .top{
+        font-size:48px;
+    }
+
+    .row{
+        gap:25px;
+    }
+
+    .box{
+        width:170px;
+        height:170px;
+    }
+
+    .section{
+        flex-direction:column;
+        gap:40px;
+        padding:60px 20px;
+    }
+
+    .city{
+        font-size:42px;
+    }
+
+    .right img{
+        width:85%;
+    }
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media(max-width:600px){
+
+    .container{
+        padding:30px 15px;
+    }
+
+    .top{
+        font-size:34px;
+        min-height:auto;
+    }
+
+    .row{
+        gap:18px;
+    }
+
+    .box{
+        width:140px;
+        height:140px;
+    }
+
+    .section{
+        min-height:auto;
+        padding:50px 15px;
+    }
+
+    .city{
+        font-size:32px;
+    }
+
+    .details{
+        font-size:16px;
+        line-height:1.6;
+    }
+
+    .right img{
+        width:100%;
+    }
+
+    .content{
+        transform:translateY(80px);
+    }
+
+    .content.show{
+        transform:translateY(0);
+    }
+}
+#chat-toggle{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    background:#111;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+    cursor:pointer;
+    z-index:9999;
+}
+
+#chat-box{
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:320px;
+    height:420px;
+    background:#fff;
+    display:none;
+    flex-direction:column;
+    border-radius:10px;
+    overflow:hidden;
+    z-index:9999;
+}
+
+#chat-header{
+    background:#111;
+    color:#fff;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+}
+
+#chat-messages{
+    flex:1;
+    padding:10px;
+    overflow-y:auto;
+    background:#f5f5f5;
+}
+
+#chat-input-area{
+    display:flex;
+}
+
+#chat-input{
+    flex:1;
+    padding:10px;
+    border:none;
+}
+
+#send-btn{
+    background:#111;
+    color:#fff;
+    border:none;
+    padding:10px;
+    cursor:pointer;
+}
+
+.user{text-align:right;color:blue;margin:5px;}
+.bot{text-align:left;margin:5px;}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP SECTION -->
+
+<div class="container">
+
+    <div class="bubbles"></div>
+
+    <div class="top">Explore Uttarakhand</div>
+
+    <div class="bottom">
+        <div class="row">
+            <div class="box"><img src="https://www.shivkhori.in/wp-content/uploads/2025/09/Kedarnath-Temple-768x432.webp"></div>
+            <div class="box"><img src="https://www.chardhamyatra2020.com/wp-content/uploads/2019/08/badrinath-600x400.jpg"></div>
+            <div class="box"><img src="https://indotoursadventures.com/public/storage/blogs/9a50e7a21012fb836df10a222ff865a7.jpg"></div>
+            <div class="box"><img src="https://www.chardham-pilgrimage-tour.com/assets/images/hemkund-banner2.webp"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SECTION 1 -->
+<div class="section c1">
+    <div class="left">
+        <div class="content">
+            <div class="city">Kedarnath</div>
+            <div class="details">
+                <p>Location: Uttarakhand</p>
+                <p>Height: 3,583 m</p>
+                <p>Famous for: Lord Shiva Temple</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <img src="https://www.shivkhori.in/wp-content/uploads/2025/09/Kedarnath-Temple-768x432.webp">
+    </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section c2">
+    <div class="left">
+        <div class="content">
+            <div class="city">Badrinath</div>
+            <div class="details">
+                <p>Location: Uttarakhand</p>
+                <p>Height: 3,300 m</p>
+                <p>Famous for: Vishnu Temple</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <img src="https://www.chardhamyatra2020.com/wp-content/uploads/2019/08/badrinath-600x400.jpg">
+    </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section c3">
+    <div class="left">
+        <div class="content">
+            <div class="city">Tungnath</div>
+            <div class="details">
+                <p>Location: Uttarakhand</p>
+                <p>Highest Shiva temple</p>
+                <p>Trekking destination</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <img src="https://indotoursadventures.com/public/storage/blogs/9a50e7a21012fb836df10a222ff865a7.jpg">
+    </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section c4">
+    <div class="left">
+        <div class="content">
+            <div class="city">Hemkund</div>
+            <div class="details">
+                <p>Location: Uttarakhand</p>
+                <p>Height: 4,329 m</p>
+                <p>Famous Sikh pilgrimage site</p>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <img src="https://www.chardham-pilgrimage-tour.com/assets/images/hemkund-banner2.webp">
+    </div>
+</div>
+
+<!-- CHATBOT ICON -->
+<div id="chat-toggle">💬</div>
+
+<!-- CHAT BOX -->
+<div id="chat-box">
+    <div id="chat-header">
+        Chat
+        <span id="chat-close">✕</span>
+    </div>
+
+    <div id="chat-messages">
+        <div class="bot">👋 Hello!</div>
+    </div>
+
+    <div id="chat-input-area">
+        <input id="chat-input" type="text" placeholder="Type...">
+        <button id="send-btn">Send</button>
+    </div>
+</div>
+
+<script>
+const elements = document.querySelectorAll('.content, .right img');
+
+window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+        const pos = el.getBoundingClientRect().top;
+
+        if(pos < window.innerHeight - 100){
+            el.classList.add('show');
+        } else {
+            el.classList.remove('show');
+        }
+    });
+});
+
+// chatbot
+let box = document.getElementById("chat-box");
+let icon = document.getElementById("chat-toggle");
+let closeBtn = document.getElementById("chat-close");
+let input = document.getElementById("chat-input");
+let messages = document.getElementById("chat-messages");
+
+icon.onclick = () => {
+    box.style.display = "flex";
+    icon.style.display = "none";
+};
+
+closeBtn.onclick = () => {
+    box.style.display = "none";
+    icon.style.display = "flex";
+};
+
+function send(){
+    let text = input.value.trim();
+    if(text === "") return;
+
+    messages.innerHTML += "<div class='user'>"+text+"</div>";
+
+    let reply = "Sorry, I didn't understand";
+
+    if(text.toLowerCase().includes("hello")){
+        reply = "Hello 👋";
+    }
+
+    messages.innerHTML += "<div class='bot'>"+reply+"</div>";
+
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+}
+
+document.getElementById("send-btn").onclick = send;
+
+input.addEventListener("keydown",(e)=>{
+    if(e.key==="Enter") send();
+});
+
+// bobbles
+const bubbleContainer = document.querySelector(".bubbles");
+
+function createBubble() {
+  const bubble = document.createElement("span");
+
+  // random size
+  let size = Math.random() * 40 + 5; // 5px to 45px
+  bubble.style.width = size + "px";
+  bubble.style.height = size + "px";
+
+  // random position
+  bubble.style.left = Math.random() * 100 + "%";
+
+  // random speed
+  let duration = Math.random() * 5 + 4; // 4s to 9s
+  bubble.style.animationDuration = duration + "s";
+
+  bubbleContainer.appendChild(bubble);
+
+  // remove after animation
+  setTimeout(() => {
+    bubble.remove();
+  }, duration * 1000);
+}
+
+// continuously create bubbles
+setInterval(createBubble, 200);
+</script>
+
+</body>
+</html>
